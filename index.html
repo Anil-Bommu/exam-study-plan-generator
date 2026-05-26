@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Study Plan Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>📚 Exam Study Plan Generator</h1>
+                <p class="subtitle">Create personalized study schedules for your exams</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Exam Input Form -->
+            <section class="form-section">
+                <div class="form-container">
+                    <h2>Add New Exam</h2>
+                    <form id="examForm" class="exam-form">
+                        <!-- Exam Name Field -->
+                        <div class="form-group">
+                            <label for="examName">Exam Name / Subject *</label>
+                            <input 
+                                type="text" 
+                                id="examName" 
+                                name="examName" 
+                                placeholder="e.g., Mathematics Final, Biology Mid-term"
+                                required
+                                maxlength="100"
+                            >
+                            <small class="error-message" id="examNameError"></small>
+                        </div>
+
+                        <!-- Exam Date Field -->
+                        <div class="form-group">
+                            <label for="examDate">Exam Date *</label>
+                            <input 
+                                type="date" 
+                                id="examDate" 
+                                name="examDate" 
+                                required
+                            >
+                            <small class="error-message" id="examDateError"></small>
+                        </div>
+
+                        <!-- Materials/Topics Field -->
+                        <div class="form-group">
+                            <label for="materials">Study Materials / Topics *</label>
+                            <textarea 
+                                id="materials" 
+                                name="materials" 
+                                placeholder="Enter topics separated by new lines. Example:&#10;Chapter 1: Introduction&#10;Chapter 2: Fundamentals&#10;Chapter 3: Advanced Concepts"
+                                rows="6"
+                                required
+                            ></textarea>
+                            <small class="info-text">Enter each topic or chapter on a new line</small>
+                            <small class="error-message" id="materialsError"></small>
+                        </div>
+
+                        <!-- Study Start Date Field -->
+                        <div class="form-group">
+                            <label for="studyStartDate">When to Start Studying?</label>
+                            <input 
+                                type="date" 
+                                id="studyStartDate" 
+                                name="studyStartDate"
+                            >
+                            <small class="info-text">If not specified, today will be used as the start date</small>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <span>Generate Study Plan</span>
+                            </button>
+                            <button type="reset" class="btn btn-secondary">Clear Form</button>
+                            <button type="button" class="btn btn-secondary" id="cancelEditBtn" style="display: none;">
+                                Cancel Edit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Exams List Section -->
+            <section class="exams-section">
+                <h2>Your Study Plans</h2>
+                <div id="examsList" class="exams-list">
+                    <div class="empty-state">
+                        <p>📝 No study plans yet. Create one to get started!</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal for Study Plan Details -->
+        <div id="planModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Study Plan</h2>
+                    <button class="modal-close" onclick="closeModal()">&times;</button>
+                </div>
+                <div id="modalBody" class="modal-body">
+                    <!-- Study schedule will be inserted here -->
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overlay for Modal -->
+        <div id="modalOverlay" class="modal-overlay" style="display: none;" onclick="closeModal()"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
